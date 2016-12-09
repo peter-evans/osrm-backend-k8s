@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: osrm-car
+spec:
+  ports:
+  - port: 80
+    targetPort: 5000
+    protocol: TCP
+  selector:
+    app: osrm-car
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: osrm-car-canary
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: osrm-car
+        track: canary
+    spec:
+      volumes:
+      - name: osrm-secret-volume
+        secret:
+          secretName: osrm-storage-secret
+      containers:
+      - name: osrm-backend
+        image: peterevans/osrm-backend:1.0
+        volumeMounts:
+        - name: osrm-secret-volume
+          readOnly: true
+          mountPath: /etc/osrm-secret-volume
+        ports:
+        - containerPort: 5000
+        readinessProbe:
+          httpGet:
+            path: /nearest/v1/healthz/0,0
+            port: 5000
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+        args:
+        - maldives-car-20161209
+        - "/etc/osrm-secret-volume/service-account-key.json"
+        - my-project
+        - "gs://my-bucket"
+        - car
+        - "http://download.geofabrik.de/asia/maldives-latest.osm.pbf"
