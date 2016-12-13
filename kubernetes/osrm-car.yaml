@@ -27,8 +27,8 @@ spec:
         secret:
           secretName: osrm-storage-secret
       containers:
-      - name: osrm-backend
-        image: peterevans/osrm-backend:1.0
+      - name: osrm-backend-k8s
+        image: peterevans/osrm-backend-k8s:latest
         volumeMounts:
         - name: osrm-secret-volume
           readOnly: true
