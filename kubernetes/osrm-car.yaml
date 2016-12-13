@@ -29,6 +29,17 @@ spec:
       containers:
       - name: osrm-backend-k8s
         image: peterevans/osrm-backend-k8s:latest
+        env:
+        - name: OSRM_MODE
+          value: RESTORE
+        - name: OSRM_DATA_LABEL
+          value: maldives-car-20161209
+        - name: OSRM_SA_KEY_PATH
+          value: "/etc/osrm-secret-volume/service-account-key.json"
+        - name: OSRM_PROJECT_ID
+          value: my-project
+        - name: OSRM_GS_BUCKET
+          value: "gs://my-bucket"
         volumeMounts:
         - name: osrm-secret-volume
           readOnly: true
@@ -41,8 +52,3 @@ spec:
             port: 5000
           initialDelaySeconds: 30
           timeoutSeconds: 1
-        args:
-        - maldives-car-20161209
-        - "/etc/osrm-secret-volume/service-account-key.json"
-        - my-project
-        - "gs://my-bucket"
