@@ -1,9 +1,30 @@
 # osrm-backend for Kubernetes
 Open Source Routing Machine (OSRM) [osrm-backend](https://github.com/Project-OSRM/osrm-backend) for Kubernetes on Google Container Engine (GKE).
 
-Based on [osrm-backend-docker](https://github.com/cartography/osrm-backend-docker), this Docker image and sample Kubernetes configuration files provide a solution to persisting graph data and immutable deployments.
+Based on [osrm-backend-docker](https://github.com/cartography/osrm-backend-docker), this Docker image and sample Kubernetes configuration files are one solution to persisting [osrm-backend](https://github.com/Project-OSRM/osrm-backend) data and providing immutable deployments.
 
-## Explanation
+## Usage
+The Docker image can be run standalone without Kubernetes:
+
+```bash
+docker run -d -p 5000:5000 \
+-e OSRM_PBF_URL='http://download.geofabrik.de/asia/maldives-latest.osm.pbf' \
+--name osrm-backend peterevans/osrm-backend-k8s:latest
+```
+Tail the logs to verify the graph has been built and osrm-backend is serving requests:
+```
+docker logs -f <CONTAINER ID>
+```
+Then point your web browser to [http://localhost:5000/](http://localhost:5000/)
+
+## Kubernetes Deployment
+The [osrm-backend](https://github.com/Project-OSRM/osrm-backend) builds a data graph from a PBF file. This process can take over an hour for a single country.
+If a pod in a deployment fails, waiting over an hour for a new pod to start could lead to loss of service.
+
+The sample Kubernetes files provide a means of persisting a data graph in storage that is used by all pods in the deployment. 
+Each pod having their own copy of the graph is desirable in order to have no single point of failure.
+
+#### Explanation
 Initial deployment flow:
 
 1. Create a secret that contains the JSON key of a Google Cloud IAM service account that has read/write permissions to Google Storage.
@@ -18,8 +39,6 @@ To update the live deployment with a new graph:
 2. Wait for the graph to be built and uploaded to Google Storage.
 3. Delete the canary deployment.
 4. Perform a rolling update on the stable track deployment to create pods using the new graph.
-
-## Usage
 
 #### Creating the secret
 
@@ -46,17 +65,15 @@ kubectl create secret generic osrm-storage-secret --from-file=$KEY_FILE
 ```  
 
 #### Deployment configuration
-Before deploying, edit the `args` section of both the canary deployment and stable track deployment. The arguments passed to the Docker entrypoint are as follows:
+Before deploying, edit the `env` section of both the canary deployment and stable track deployment.
 
-- `$1` - A meaningful label for the data graph. e.g. maldives-car-20161209
-- `$2` - Path to the JSON service account key. This needs to match the `mountPath` of the volume mounted secret.
-- `$3` - Google Cloud project ID.
-- `$4` - Google Storage bucket.
-- `$5` - Graph profile. (car/bicycle/foot)
-- `$6` - URL to PBF data file.
-
-All six arguments are specified in the canary deployment in order to build a new graph. The stable deployment track just requires the first four arguments.
-
+- `OSRM_MODE` - `CREATE` from PBF data, or `RESTORE` from Google Storage.
+- `OSRM_PBF_URL` - URL to PBF data file. (Optional when `OSRM_MODE=RESTORE`)
+- `OSRM_GRAPH_PROFILE` - Graph profile; `car`,`bicycle` or `foot`. (Optional when `OSRM_MODE=RESTORE`)
+- `OSRM_DATA_LABEL` - A meaningful and **unique** label for the data. e.g. maldives-car-20161209
+- `OSRM_SA_KEY_PATH` - Path to the JSON service account key. This needs to match the `mountPath` of the volume mounted secret.
+- `OSRM_PROJECT_ID` - Google Cloud project ID.
+- `OSRM_GS_BUCKET` - Google Storage bucket.
 
 ## Credits
 

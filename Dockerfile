@@ -30,6 +30,7 @@ RUN mkdir -p /osrm-build \
 
 WORKDIR /osrm-build
 
+# Build osrm-backend
 RUN curl --silent -L https://github.com/Project-OSRM/osrm-backend/archive/v5.2.6.tar.gz -o v5.2.6.tar.gz \
  && tar xzf v5.2.6.tar.gz \
  && mv osrm-backend-5.2.6 /osrm-src \
@@ -42,13 +43,11 @@ RUN curl --silent -L https://github.com/Project-OSRM/osrm-backend/archive/v5.2.6
  && echo "disk=/tmp/stxxl,25000,syscall" > .stxxl \
  && rm -rf /osrm-src
 
-# Cleanup --------------------------------
-
+# Clean up
 RUN apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-# Publish --------------------------------
-
+# Set the entrypoint
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
