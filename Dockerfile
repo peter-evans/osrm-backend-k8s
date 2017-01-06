@@ -1,51 +1,49 @@
-FROM peterevans/trusty-gcloud:1.0
+FROM peterevans/xenial-gcloud:1.0
 
 MAINTAINER Peter Evans <pete.evans@gmail.com>
+
+ENV OSRM_VERSION 5.5.2
 
 # Let the container know that there is no TTY
 ENV DEBIAN_FRONTEND noninteractive
 
-# Install necessary packages for proper system state
+# Install packages
 RUN apt-get -y update && apt-get install -y \
     build-essential \
     cmake \
     curl \
     git \
-    libboost-all-dev \
     libbz2-dev \
     libstxxl-dev \
-    libstxxl-doc \
-    libstxxl1 \
-    libtbb-dev \
+    libstxxl1v5 \
     libxml2-dev \
     libzip-dev \
-    lua5.1 \
-    liblua5.1-0-dev \
+    libboost-all-dev \
+    lua5.2 \
+    liblua5.2-dev \
+    libtbb-dev \
     libluabind-dev \
-    libluajit-5.1-dev \
-    pkg-config
-
-RUN mkdir -p /osrm-build \
- && mkdir -p /osrm-data
-
-WORKDIR /osrm-build
+    pkg-config && \
+    # Clean up
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/* /var/tmp/*
 
 # Build osrm-backend
-RUN curl --silent -L https://github.com/Project-OSRM/osrm-backend/archive/v5.5.2.tar.gz -o v5.5.2.tar.gz \
- && tar xzf v5.5.2.tar.gz \
- && mv osrm-backend-5.5.2 /osrm-src \
- && cmake /osrm-src \
- && make \
- && mv /osrm-src/profiles/car.lua car.lua \
- && mv /osrm-src/profiles/bicycle.lua bicycle.lua \
- && mv /osrm-src/profiles/foot.lua foot.lua \
- && mv /osrm-src/profiles/lib/ lib \
- && echo "disk=/tmp/stxxl,25000,syscall" > .stxxl \
+RUN mkdir /osrm-src \
+ && cd /osrm-src \
+ && curl --silent -L https://github.com/Project-OSRM/osrm-backend/archive/v$OSRM_VERSION.tar.gz -o v$OSRM_VERSION.tar.gz \
+ && tar xzf v$OSRM_VERSION.tar.gz \
+ && cd osrm-backend-$OSRM_VERSION \
+ && mkdir build \
+ && cd build \
+ && cmake .. -DCMAKE_BUILD_TYPE=Release \
+ && cmake --build . \
+ && cmake --build . --target install \
+ && mkdir /osrm-data \
+ && mkdir /osrm-profiles \
+ && cp -r /osrm-src/osrm-backend-$OSRM_VERSION/profiles/* /osrm-profiles \
  && rm -rf /osrm-src
-
-# Clean up
-RUN apt-get clean \
- && rm -rf /var/lib/apt/lists/*
 
 # Set the entrypoint
 COPY docker-entrypoint.sh /
