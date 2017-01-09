@@ -8,7 +8,8 @@ ENV OSRM_VERSION 5.5.2
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install packages
-RUN apt-get -y update && apt-get install -y \
+RUN apt-get -y update \
+ && apt-get install -y -qq --no-install-recommends \
     build-essential \
     cmake \
     curl \
@@ -22,11 +23,10 @@ RUN apt-get -y update && apt-get install -y \
     liblua5.2-dev \
     libtbb-dev \
     libluabind-dev \
-    pkg-config && \
-    # Clean up
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /tmp/* /var/tmp/*
+    pkg-config \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* \
+ && rm -rf /tmp/* /var/tmp/*
 
 # Build osrm-backend
 RUN mkdir /osrm-src \
