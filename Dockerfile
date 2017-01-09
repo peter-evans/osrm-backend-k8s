@@ -12,7 +12,6 @@ RUN apt-get -y update && apt-get install -y \
     build-essential \
     cmake \
     curl \
-    git \
     libbz2-dev \
     libstxxl-dev \
     libstxxl1v5 \
