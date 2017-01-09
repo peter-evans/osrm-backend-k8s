@@ -1,4 +1,4 @@
-FROM peterevans/xenial-gcloud:1.0
+FROM peterevans/xenial-gcloud:1.1
 
 MAINTAINER Peter Evans <pete.evans@gmail.com>
 
