@@ -24,15 +24,12 @@ trap _sig SIGKILL SIGTERM SIGHUP SIGINT EXIT
 
 if [ "$OSRM_MODE" == "CREATE" ]; then
     
-    # Set the graph profile (car/bicycle/foot)
-    mv $OSRM_GRAPH_PROFILE.lua profile.lua
-
     # Retrieve the PBF file
     curl $OSRM_PBF_URL --create-dirs -o $OSRM_DATA_PATH/$OSRM_DATA_LABEL.osm.pbf
     
     # Build the graph
-    ./osrm-extract $OSRM_DATA_PATH/$OSRM_DATA_LABEL.osm.pbf
-    ./osrm-contract $OSRM_DATA_PATH/$OSRM_DATA_LABEL.osrm
+    osrm-extract $OSRM_DATA_PATH/$OSRM_DATA_LABEL.osm.pbf -p /osrm-profiles/$OSRM_GRAPH_PROFILE.lua
+    osrm-contract $OSRM_DATA_PATH/$OSRM_DATA_LABEL.osrm
 
     if [ ! -z "$OSRM_SA_KEY_PATH" ] && [ ! -z "$OSRM_PROJECT_ID" ] && [ ! -z "$OSRM_GS_BUCKET" ]; then
     
@@ -63,6 +60,6 @@ else
 fi
 
 # Start serving requests
-./osrm-routed $OSRM_DATA_PATH/$OSRM_DATA_LABEL.osrm --max-table-size 8000 &
+osrm-routed $OSRM_DATA_PATH/$OSRM_DATA_LABEL.osrm --max-table-size 1000 &
 child=$!
 wait "$child"
