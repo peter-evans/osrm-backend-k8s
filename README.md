@@ -1,7 +1,14 @@
 # osrm-backend for Kubernetes
 Open Source Routing Machine (OSRM) [osrm-backend](https://github.com/Project-OSRM/osrm-backend) for Kubernetes on Google Container Engine (GKE).
 
-Based on [osrm-backend-docker](https://github.com/cartography/osrm-backend-docker), this Docker image and sample Kubernetes configuration files are one solution to persisting [osrm-backend](https://github.com/Project-OSRM/osrm-backend) data and providing immutable deployments.
+This Docker image and sample Kubernetes configuration files are one solution to persisting [osrm-backend](https://github.com/Project-OSRM/osrm-backend) data and providing immutable deployments.
+
+[![](https://images.microbadger.com/badges/image/peterevans/osrm-backend-k8s.svg)](https://microbadger.com/images/peterevans/osrm-backend-k8s "Get your own image badge on microbadger.com")
+
+## Supported tags and respective `Dockerfile` links
+
+- [`1.3.0`, `1.3`, `latest`  (*1.3/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.3)
+- [`1.2.0`, `1.2`  (*1.2/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.2)
 
 ## Usage
 The Docker image can be run standalone without Kubernetes:
