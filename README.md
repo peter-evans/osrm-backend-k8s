@@ -1,9 +1,11 @@
 # osrm-backend for Kubernetes
+[![](https://images.microbadger.com/badges/image/peterevans/osrm-backend-k8s.svg)](https://microbadger.com/images/peterevans/osrm-backend-k8s)
+
 Open Source Routing Machine (OSRM) [osrm-backend](https://github.com/Project-OSRM/osrm-backend) for Kubernetes on Google Container Engine (GKE).
 
 This Docker image and sample Kubernetes configuration files are one solution to persisting [osrm-backend](https://github.com/Project-OSRM/osrm-backend) data and providing immutable deployments.
 
-[![](https://images.microbadger.com/badges/image/peterevans/osrm-backend-k8s.svg)](https://microbadger.com/images/peterevans/osrm-backend-k8s "Get your own image badge on microbadger.com")
+If you are looking for a more general purpose docker image, see [osrm-backend-docker](https://github.com/peter-evans/osrm-backend-docker).
 
 ## Supported tags and respective `Dockerfile` links
 
@@ -81,10 +83,6 @@ Before deploying, edit the `env` section of both the canary deployment and stabl
 - `OSRM_SA_KEY_PATH` - Path to the JSON service account key. This needs to match the `mountPath` of the volume mounted secret.
 - `OSRM_PROJECT_ID` - Google Cloud project ID.
 - `OSRM_GS_BUCKET` - Google Storage bucket.
-
-## Credits
-
-Based on [osrm-backend-docker](https://github.com/cartography/osrm-backend-docker).
 
 ## License
 
