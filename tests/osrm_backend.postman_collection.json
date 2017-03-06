@@ -1,0 +1,61 @@
+{
+	"variables": [],
+	"info": {
+		"name": "osrm_backend",
+		"_postman_id": "c7fd9044-4882-932e-b466-fe0e6d306b6d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5000/route/v1/car/73.539603,1.935541;73.534974,1.897450?alternatives=false&overview=false",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"OSRM response code is 'Ok'\"] = jsonData.code === \"Ok\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:5000/route/v1/car/73.539603,1.935541;73.534974,1.897450?alternatives=false&overview=false",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Tests the route service."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/nearest/v1/car/73.539603,1.935541",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"OSRM response code is 'Ok'\"] = jsonData.code === \"Ok\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:5000/nearest/v1/car/73.539603,1.935541",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Tests the nearest service."
+			},
+			"response": []
+		}
+	]
+}
