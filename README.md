@@ -10,7 +10,8 @@ If you are looking for a more general purpose docker image, see [osrm-backend-do
 
 ## Supported tags and respective `Dockerfile` links
 
-- [`1.12.0`, `1.12`, `latest`  (*1.12/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.12)
+- [`1.13.0`, `1.13`, `latest`  (*1.13/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.13)
+- [`1.12.0`, `1.12` (*1.12/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.12)
 - [`1.11.0`, `1.11` (*1.11/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.11)
 - [`1.10.0`, `1.10` (*1.10/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.10)
 - [`1.9.0`, `1.9` (*1.9/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.9)
@@ -19,7 +20,6 @@ If you are looking for a more general purpose docker image, see [osrm-backend-do
 - [`1.6.1`, `1.6` (*1.6/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.6)
 - [`1.5.4`, `1.5` (*1.5/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.5)
 - [`1.4.4`, `1.4` (*1.4/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.4)
-- [`1.3.0`, `1.3` (*1.3/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.3)
 
 For earlier versions see [releases](https://github.com/peter-evans/osrm-backend-k8s/releases) and the available [tags on Docker Hub](https://hub.docker.com/r/peterevans/osrm-backend-k8s/tags/).
 
