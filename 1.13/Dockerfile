@@ -2,7 +2,7 @@ FROM peterevans/xenial-gcloud:1.2.10
 
 MAINTAINER Peter Evans <pete.evans@gmail.com>
 
-ENV OSRM_VERSION 5.14.0
+ENV OSRM_VERSION 5.14.1
 
 # Let the container know that there is no TTY
 ENV DEBIAN_FRONTEND noninteractive
