@@ -14,6 +14,7 @@ OSRM_PBF_URL=${OSRM_PBF_URL:="http://download.geofabrik.de/asia/maldives-latest.
 OSRM_SA_KEY_PATH=${OSRM_SA_KEY_PATH:=""}
 OSRM_PROJECT_ID=${OSRM_PROJECT_ID:=""}
 OSRM_GS_BUCKET=${OSRM_GS_BUCKET:=""}
+OSRM_MAX_TABLE_SIZE=${OSRM_MAX_TABLE_SIZE:="8000"}
 
 
 _sig() {
@@ -60,6 +61,6 @@ else
 fi
 
 # Start serving requests
-osrm-routed $OSRM_DATA_PATH/$OSRM_DATA_LABEL.osrm --max-table-size 1000 &
+osrm-routed $OSRM_DATA_PATH/$OSRM_DATA_LABEL.osrm --max-table-size $OSRM_MAX_TABLE_SIZE &
 child=$!
 wait "$child"
