@@ -10,7 +10,7 @@ If you are looking for a more general purpose docker image, see [osrm-backend-do
 
 ## Supported tags and respective `Dockerfile` links
 
-- [`1.15.2`, `1.15`, `latest`  (*1.15/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.15)
+- [`1.15.3`, `1.15`, `latest`  (*1.15/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.15)
 - [`1.14.3`, `1.14` (*1.14/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.14)
 - [`1.13.3`, `1.13` (*1.13/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.13)
 - [`1.12.0`, `1.12` (*1.12/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.12)
