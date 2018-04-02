@@ -24,9 +24,16 @@ RUN apt-get -y update \
     libtbb-dev \
     libluabind-dev \
     pkg-config \
+    gcc \
+    python-dev \
+    python-setuptools \    
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && rm -rf /tmp/* /var/tmp/*
+
+#Install CRC32C and Installing crcmod
+RUN easy_install -U pip
+RUN pip install -U crcmod
 
 # Build osrm-backend
 RUN mkdir /osrm-src \
