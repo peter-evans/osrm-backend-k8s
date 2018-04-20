@@ -1,8 +1,8 @@
-FROM peterevans/xenial-gcloud:1.2.6
+FROM peterevans/xenial-gcloud:1.2.13
 
 MAINTAINER Peter Evans <pete.evans@gmail.com>
 
-ENV OSRM_VERSION 5.8.1
+ENV OSRM_VERSION 5.17.0
 
 # Let the container know that there is no TTY
 ENV DEBIAN_FRONTEND noninteractive
@@ -24,7 +24,12 @@ RUN apt-get -y update \
     libtbb-dev \
     libluabind-dev \
     pkg-config \
+    gcc \
+    python-dev \
+    python-setuptools \    
  && apt-get clean \
+ && easy_install -U pip \
+ && pip install -U crcmod \
  && rm -rf /var/lib/apt/lists/* \
  && rm -rf /tmp/* /var/tmp/*
 
