@@ -2,7 +2,7 @@ services:
   - docker
 
 install:
-  - docker build -t osrm-backend-k8s ./1.15
+  - docker build -t osrm-backend-k8s ./1.16
   - docker run -d -p 5000:5000 -e OSRM_PBF_URL='http://download.geofabrik.de/asia/maldives-latest.osm.pbf' --name osrm-backend osrm-backend-k8s
 
 before_script:
