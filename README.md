@@ -1,6 +1,7 @@
 # osrm-backend for Kubernetes
 [![](https://images.microbadger.com/badges/image/peterevans/osrm-backend-k8s.svg)](https://microbadger.com/images/peterevans/osrm-backend-k8s)
 [![Build Status](https://travis-ci.org/peter-evans/osrm-backend-k8s.svg?branch=master)](https://travis-ci.org/peter-evans/osrm-backend-k8s)
+[![CircleCI](https://circleci.com/gh/peter-evans/osrm-backend-k8s/tree/master.svg?style=svg)](https://circleci.com/gh/peter-evans/osrm-backend-k8s/tree/master)
 
 Open Source Routing Machine (OSRM) [osrm-backend](https://github.com/Project-OSRM/osrm-backend) for Kubernetes on Google Container Engine (GKE).
 
@@ -10,16 +11,11 @@ If you are looking for a more general purpose docker image, see [osrm-backend-do
 
 ## Supported tags and respective `Dockerfile` links
 
-- [`1.20.0`, `1.20`, `latest`  (*1.20/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.20)
-- [`1.19.0`, `1.19` (*1.19/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.19)
-- [`1.18.0`, `1.18` (*1.18/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.18)
-- [`1.17.1`, `1.17` (*1.17/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.17)
-- [`1.16.2`, `1.16` (*1.16/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.16)
-- [`1.15.7`, `1.15` (*1.15/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.15)
-- [`1.14.3`, `1.14` (*1.14/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.14)
-- [`1.13.3`, `1.13` (*1.13/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.13)
-- [`1.12.0`, `1.12` (*1.12/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.12)
-- [`1.11.0`, `1.11` (*1.11/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/1.11)
+- [`1.21.0`, `1.21`, `latest`  (*1.21/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master)
+- [`1.20.0`, `1.20` (*1.20/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/archive/1.20)
+- [`1.19.0`, `1.19` (*1.19/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/archive/1.19)
+- [`1.18.0`, `1.18` (*1.18/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/archive/1.18)
+- [`1.17.1`, `1.17` (*1.17/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/archive/1.17)
 
 For earlier versions see [releases](https://github.com/peter-evans/osrm-backend-k8s/releases) and the available [tags on Docker Hub](https://hub.docker.com/r/peterevans/osrm-backend-k8s/tags/).
 
