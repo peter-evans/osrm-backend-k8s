@@ -1,6 +1,13 @@
-FROM peterevans/xenial-gcloud:1.2.22
+FROM peterevans/xenial-gcloud:1.2.23
 
-MAINTAINER Peter Evans <pete.evans@gmail.com>
+LABEL \
+  maintainer="Peter Evans <mail@peterevans.dev>" \
+  org.opencontainers.image.title="osrm-backend-k8s" \
+  org.opencontainers.image.description="Open Source Routing Machine (OSRM) osrm-backend for Kubernetes on Google Container Engine (GKE)." \
+  org.opencontainers.image.authors="Peter Evans <mail@peterevans.dev>" \
+  org.opencontainers.image.url="https://github.com/peter-evans/osrm-backend-k8s" \
+  org.opencontainers.image.vendor="https://peterevans.dev" \
+  org.opencontainers.image.licenses="MIT"
 
 ENV OSRM_VERSION 5.22.0
 
