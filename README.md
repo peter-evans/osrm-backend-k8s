@@ -11,7 +11,7 @@ If you are looking for a more general purpose docker image, see [osrm-backend-do
 
 ## Supported tags and respective `Dockerfile` links
 
-- [`1.21.0`, `1.21`, `latest`  (*1.21/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master)
+- [`1.21.1`, `1.21`, `latest`  (*1.21/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master)
 - [`1.20.0`, `1.20` (*1.20/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/archive/1.20)
 - [`1.19.0`, `1.19` (*1.19/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/archive/1.19)
 - [`1.18.0`, `1.18` (*1.18/Dockerfile*)](https://github.com/peter-evans/osrm-backend-k8s/tree/master/archive/1.18)
