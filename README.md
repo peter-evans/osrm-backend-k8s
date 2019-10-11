@@ -1,6 +1,5 @@
 # osrm-backend for Kubernetes
 [![](https://images.microbadger.com/badges/image/peterevans/osrm-backend-k8s.svg)](https://microbadger.com/images/peterevans/osrm-backend-k8s)
-[![Build Status](https://travis-ci.org/peter-evans/osrm-backend-k8s.svg?branch=master)](https://travis-ci.org/peter-evans/osrm-backend-k8s)
 [![CircleCI](https://circleci.com/gh/peter-evans/osrm-backend-k8s/tree/master.svg?style=svg)](https://circleci.com/gh/peter-evans/osrm-backend-k8s/tree/master)
 
 Open Source Routing Machine (OSRM) [osrm-backend](https://github.com/Project-OSRM/osrm-backend) for Kubernetes on Google Container Engine (GKE).
