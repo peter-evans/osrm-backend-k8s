@@ -26,7 +26,7 @@ trap _sig SIGKILL SIGTERM SIGHUP SIGINT EXIT
 if [ "$OSRM_MODE" == "CREATE" ]; then
     
     # Retrieve the PBF file
-    curl -L $OSRM_PBF_URL --create-dirs -o $OSRM_DATA_PATH/$OSRM_DATA_LABEL.osm.pbf
+    curl -k -L $OSRM_PBF_URL --create-dirs -o $OSRM_DATA_PATH/$OSRM_DATA_LABEL.osm.pbf
     
     # Build the graph
     osrm-extract $OSRM_DATA_PATH/$OSRM_DATA_LABEL.osm.pbf -p /osrm-profiles/$OSRM_GRAPH_PROFILE.lua
