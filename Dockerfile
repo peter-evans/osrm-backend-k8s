@@ -9,7 +9,7 @@ LABEL \
   org.opencontainers.image.vendor="https://peterevans.dev" \
   org.opencontainers.image.licenses="MIT"
 
-ENV OSRM_VERSION 5.22.0
+ENV OSRM_VERSION 5.26.0
 
 # Let the container know that there is no TTY
 ARG DEBIAN_FRONTEND=noninteractive
