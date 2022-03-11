@@ -9,7 +9,7 @@ LABEL \
   org.opencontainers.image.vendor="https://peterevans.dev" \
   org.opencontainers.image.licenses="MIT"
 
-ENV OSRM_VERSION 5.22.0
+ENV OSRM_VERSION 5.26.0
 
 # Let the container know that there is no TTY
 ARG DEBIAN_FRONTEND=noninteractive
@@ -33,9 +33,9 @@ RUN apt-get -y update \
     pkg-config \
     gcc \
     python-dev \
+    python-pip \
     python-setuptools \    
  && apt-get clean \
- && easy_install -U pip \
  && pip install -U crcmod \
  && rm -rf /var/lib/apt/lists/* \
  && rm -rf /tmp/* /var/tmp/*
@@ -55,6 +55,10 @@ RUN mkdir /osrm-src \
  && mkdir /osrm-profiles \
  && cp -r /osrm-src/osrm-backend-$OSRM_VERSION/profiles/* /osrm-profiles \
  && rm -rf /osrm-src
+
+# allows for adding prebuilt files to the image for faster use in dev without egress charges
+# expects data in same format as on gs, so prebuilt/$OSRM_DATA_LABEL/*.osrm*
+COPY prebuilt/ /prebuilt/
 
 # Set the entrypoint
 COPY docker-entrypoint.sh /
