@@ -56,6 +56,10 @@ RUN mkdir /osrm-src \
  && cp -r /osrm-src/osrm-backend-$OSRM_VERSION/profiles/* /osrm-profiles \
  && rm -rf /osrm-src
 
+# allows for adding prebuilt files to the image for faster use in dev without egress charges
+# expects data in same format as on gs, so prebuilt/$OSRM_DATA_LABEL/*.osrm*
+COPY prebuilt/ /prebuilt/
+
 # Set the entrypoint
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh

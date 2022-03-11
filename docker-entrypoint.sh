@@ -45,8 +45,13 @@ if [ "$OSRM_MODE" == "CREATE" ]; then
     fi
     
 else
-
-    if [ ! -z "$OSRM_SA_KEY_PATH" ] && [ ! -z "$OSRM_PROJECT_ID" ] && [ ! -z "$OSRM_GS_BUCKET" ]; then
+    if  [ -d /prebuilt ] && [ -d /prebuilt/$OSRM_DATA_LABEL ] ; then 
+        cd $OSRM_DATA_PATH || exit
+        for i in /prebuilt/"$OSRM_DATA_LABEL"/*; do
+            echo ln -s "$i"
+            ln -s "$i" .
+        done
+    elif [ -n "$OSRM_SA_KEY_PATH" ] && [ -n "$OSRM_PROJECT_ID" ] && [ -n "$OSRM_GS_BUCKET" ]; then
 
         # Activate the service account to access storage
         gcloud auth activate-service-account --key-file $OSRM_SA_KEY_PATH
